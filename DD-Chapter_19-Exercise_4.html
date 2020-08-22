@@ -1,4 +1,17 @@
+<!doctype html>
+<script src="code/chapter/19_paint.js"></script>
 
+<div></div>
+<script>
+  function drawLine(from, to, color) {
+    let points = [];
+    if (Math.abs(from.x - to.x) > Math.abs(from.y - to.y)) {
+      if (from.x > to.x) [from, to] = [to, from];
+      let slope = (to.y - from.y) / (to.x - from.x);
+      for (let {x, y} = from; x <= to.x; x++) {
+        points.push({x, y: Math.round(y), color});
+        y += slope;
+      }
     } else {
       if (from.y > to.y) [from, to] = [to, from];
       let slope = (to.x - from.x) / (to.y - from.y);
